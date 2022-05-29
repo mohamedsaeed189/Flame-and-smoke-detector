@@ -1,0 +1,12 @@
+Power Analyzer Status : Successful - Mon Jan 03 23:50:57 2022
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : BCDAdder
+Top-level Entity Name : BCDAdder
+Family : MAX 10
+Device : 10M50SCE144I7G
+Power Models : Final
+Total Thermal Power Dissipation : 249.65 mW
+Core Dynamic Thermal Power Dissipation : 0.00 mW
+Core Static Thermal Power Dissipation : 241.08 mW
+I/O Thermal Power Dissipation : 8.58 mW
+Power Estimation Confidence : Low: user provided insufficient toggle rate data

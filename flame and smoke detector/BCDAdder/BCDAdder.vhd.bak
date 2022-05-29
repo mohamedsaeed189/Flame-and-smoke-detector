@@ -1,0 +1,59 @@
+LIBRARY IEEE;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+USE work.BCD_package.all;
+
+ENTITY BCDAdder IS 
+PORT (X,Y : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+      S0, S1: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+		led: OUT STD_LOGIC_VECTOR(3 DOWNTO 0));
+END BCDAdder;
+
+ARCHITECTURE Behavior OF BCDAdder IS
+SIGNAL a: STD_LOGIC ;
+SIGNAL S: STD_LOGIC_VECTOR(3 DOWNTO 0);
+BEGIN
+led <= ('0' & X)+Y;
+stageBCD: BCD PORT MAP(X,Y,a,S);
+SS2(0) <= '0' WHEN a ='0' ELSE '1';
+SS2(1) <= '0' WHEN a ='0' ELSE '0';
+SS2(2) <= '0' WHEN a ='0' ELSE '0';
+SS2(3) <= '0' WHEN a ='0' ELSE '1';
+SS2(4) <= '0' WHEN a ='0' ELSE '1';
+SS2(5) <= '0' WHEN a ='0' ELSE '1';
+SS2(6) <= '1' WHEN a ='0' ELSE '1' ;
+WITH S SELECT 
+	SS1(0) <= '1' WHEN "0001",
+	          '1' WHEN "0100",
+	 	       '0' WHEN OTHERS;  
+WITH S SELECT 
+	SS1(1) <= '1' WHEN "0101",
+	          '1' WHEN "0110",
+	 	       '0' WHEN OTHERS;
+WITH S SELECT 
+	SS1(2) <= '1' WHEN "0010",
+	 	       '0' WHEN OTHERS; 
+WITH S SELECT 
+	SS1(3) <= '1' WHEN "0001",
+	          '1' WHEN "0100",
+             '1' WHEN "0111",
+	 	       '0' WHEN OTHERS;
+WITH S SELECT 
+	SS1(4) <= '0' WHEN "0000",
+		       '0' WHEN "0010",
+	          '0' WHEN "0110",
+             '0' WHEN "1000",
+	 	       '1' WHEN OTHERS;
+WITH S SELECT 
+	SS1(5) <= '1' WHEN "0001",
+		       '1' WHEN "0010",
+	          '1' WHEN "0011",
+             '1' WHEN "0111",
+	 	       '0' WHEN OTHERS;
+WITH S SELECT 
+	SS1(6) <= '1' WHEN "0000",
+		       '1' WHEN "0001",
+	          '1' WHEN "0111",
+	 	       '0' WHEN OTHERS;
+	 
+END arch;

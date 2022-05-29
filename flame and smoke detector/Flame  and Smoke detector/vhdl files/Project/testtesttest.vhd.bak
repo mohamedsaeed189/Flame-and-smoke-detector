@@ -1,0 +1,17 @@
+LIBRARY IEEE;
+USE ieee.std_logic_1164.all;
+ENTITY testtesttest IS
+PORT ( fireSensor,smokeSensor : IN STD_LOGIC;
+	    display, buzzer	: OUT STD_LOGIC);
+END testtesttest;
+
+ARCHITECTURE arch of testtesttest IS
+
+BEGIN	
+	process(fireSensor,smokeSensor)	
+	begin
+		buzzer <= (NOT fireSensor) OR (NOT smokeSensor);
+		display <= (NOT fireSensor) OR (NOT smokeSensor);
+	end process;
+END arch;
+
